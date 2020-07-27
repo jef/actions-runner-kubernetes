@@ -6,13 +6,17 @@ FROM ubuntu:bionic
 COPY install.sh /root/
 
 # Install and update the system in one tidy layer
-ARG ACTIONS_RUNNER_VERSION="2.169.1"
+ARG ACTIONS_RUNNER_VERSION="2.267.1"
 ENV ACTIONS_RUNNER_VERSION=$ACTIONS_RUNNER_VERSION
 RUN /bin/bash /root/install.sh
 
 # Run as the runner user instead of root
 USER runner
 WORKDIR /home/runner
-COPY *.sh ./
+
+COPY entrypoint.sh entrypoint.sh
+COPY install.sh install.sh
+COPY test.sh test.sh
+
 RUN /bin/bash ./test.sh
 ENTRYPOINT ["/bin/bash", "./entrypoint.sh"]
