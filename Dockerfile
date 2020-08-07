@@ -6,7 +6,7 @@ FROM ubuntu:bionic
 COPY install.sh /root/
 
 # Install and update the system in one tidy layer
-ARG ACTIONS_RUNNER_VERSION="2.267.1"
+ARG ACTIONS_RUNNER_VERSION="2.272.0"
 ENV ACTIONS_RUNNER_VERSION=$ACTIONS_RUNNER_VERSION
 RUN /bin/bash /root/install.sh
 
